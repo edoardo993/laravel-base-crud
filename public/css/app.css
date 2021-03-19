@@ -10002,3 +10002,12 @@ h3 {
     border-color: #dee2e6;
   }
 }
+.product-container {
+  display: flex;
+  justify-content: center;
+}
+
+.init {
+  font-size: 17px;
+  font-weight: bold;
+}

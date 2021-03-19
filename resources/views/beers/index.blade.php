@@ -23,7 +23,7 @@
 
                 <tr>
                     <th scope="row">{{$beer->id}}</th>
-                    <td>{{$beer->name}}</td>
+                    <td><a href="{{route('beers.show', compact('beer'))}}">{{$beer->name}}</a></td>
                     <td>{{$beer->alcohol_content}}</td>
                     <td>{{$beer->description}}</td>
                     <td>{{$beer->price}}</td>
