@@ -38,13 +38,7 @@ class BeerController extends Controller
     public function store(Request $request)
     {
 
-        $request->validate([
-            'name' => 'required|max:30',
-            'alcohol_content' => 'max:4',
-            'description' => 'max:1000',
-            'img_url' => 'max:2048',
-            'origin' => 'max:25'
-        ]);
+        $this->validateForm($request);
 
         $data = $request->all();
 
@@ -71,12 +65,12 @@ class BeerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Beer  $beer
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Beer $beer)
     {
-        //
+        return view('beers.edit', compact('beer'));
     }
 
     /**
@@ -86,9 +80,22 @@ class BeerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Beer $beer)
     {
-        //
+        $this->validateForm($request);
+        $data = $request->all();
+        $beer->update($data);
+        return redirect()->route('beers.show', compact('beer'));
+    }
+
+    protected function validateForm(Request $request){
+        $request->validate([
+            'name' => 'required|max:30',
+            'alcohol_content' => 'max:4',
+            'description' => 'max:1000',
+            'img_url' => 'max:2048',
+            'origin' => 'max:25'
+        ]);
     }
 
     /**
@@ -97,8 +104,9 @@ class BeerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Beer $beer)
     {
-        //
+        $beer->delete();
+        return redirect()->route('beers.index');
     }
 }
