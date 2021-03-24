@@ -5,11 +5,15 @@
         if(isset($edit) && !empty($edit)){
             $method = 'PUT';
             $url = route('beers.update', compact('beer'));
+            $title = 'update the beer below!';
         }else{
             $method = 'POST';
             $url = route('beers.store');
+            $title = 'add the beer below!';
         }
     @endphp
+
+    <h1 class="title">{{$title}}</h1>
 
     <form action="{{$url}}"
             method="post"
@@ -20,16 +24,6 @@
 
         @csrf
         @method($method)
-
-        {{-- @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif --}}
 
         <div class="form-group">
 
@@ -45,10 +39,6 @@
 
             <div class="invalid-feedback">
                 {{$errors->first('name')}}
-            </div>
-
-            <div class="valid-feedback">
-                Name's good!
             </div>
 
         </div>
@@ -144,7 +134,7 @@
 
         </div>
 
-        <input type="submit" value="Submit" onclick="validation()">
+        <input type="submit" value=" {{isset($beer) ? 'update' : 'add' }}" onclick="validation()" class="submit-btn-add">
 
     </form>
 

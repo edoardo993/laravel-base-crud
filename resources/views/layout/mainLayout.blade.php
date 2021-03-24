@@ -10,6 +10,21 @@
 </head>
 <body>
 
+    <header class="header">
+
+        <nav class="nav-bar">
+
+            <ul class="nav-list">
+                <li class="nav-list-item"><a href="/">home</a></li>
+                <li class="nav-list-item"><a href="/beers">all beers</a></li>
+                <li class="nav-list-item"><a href="/beers/create">add beer</a></li>
+                <li class="nav-list-item"><a href="/beers">update beer</a></li>
+            </ul>
+
+        </nav>
+
+    </header>
+
     <div class="main">
 
         @yield('main-content')
